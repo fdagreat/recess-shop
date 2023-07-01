@@ -24,6 +24,7 @@ import LoadingProducts from "../../components/Products/Loading";
 import useAuth from "../../hooks/useAuth";
 import { addItemToCart } from "../../pocketbase/routes/cart";
 import { ProductRecord } from "../../pocketbase/interfaces/products";
+import { addCommasToNumber } from "../../utils/formmating";
 
 const { Title, Text } = Typography;
 
@@ -81,7 +82,7 @@ const ProductDetails = () => {
                     {productQuery.data?.name}
                   </Title>
                   <Space>
-                    <Title level={2}> TZS {productQuery.data?.price}</Title>
+                    <Title level={2}> TZS {addCommasToNumber(productQuery.data?.price)}</Title>
                     <Text type='secondary'>(Now)</Text>
                   </Space>
                   <Text italic type='secondary'>

@@ -2,6 +2,7 @@ import styles from "./styles.module.css";
 import { ProductRecord } from "../../../pocketbase/interfaces/products";
 import { Card, Typography, Row, Badge } from "antd";
 import { HeartOutlined } from "@ant-design/icons";
+import { addCommasToNumber } from "../../../utils/formmating";
 
 const { Text, Paragraph } = Typography;
 
@@ -29,7 +30,7 @@ const ProductCard = ({ product }: propTypes) => {
           {product.name}
         </Paragraph>
         <Row justify={"space-between"}>
-          <Text strong>TZS {product.price}</Text>
+          <Text strong>TZS {addCommasToNumber(product.price)}</Text>
         </Row>
       </Card>
     </Badge.Ribbon>

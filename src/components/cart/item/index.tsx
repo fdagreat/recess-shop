@@ -11,6 +11,7 @@ import {
   Spin,
 } from "antd";
 import { CartItemRecord } from "../../../pocketbase/interfaces/cart";
+import { addCommasToNumber } from "../../../utils/formmating";
 
 const { Text, Title } = Typography;
 
@@ -65,7 +66,7 @@ const ListItem = ({
               <Col span={4}>
                 <Space direction='vertical' align='center' size={60}>
                   <Title level={4}>
-                    {product.price} <Text>TZS</Text>
+                    {addCommasToNumber(product.price)} <Text>TZS</Text>
                   </Title>
                   <Button
                     type='ghost'
