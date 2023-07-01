@@ -1,0 +1,15 @@
+.sidbar {
+  padding-top: 50px;
+
+  border: none !important;
+  height: 100% !important;
+}
+
+.sidbar li {
+  padding-left: 20px;
+}
+
+.sidbar li:nth-child(2) {
+  padding: 0;
+  margin: 20px 0;
+}

@@ -1,0 +1,18 @@
+.brand {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 100%;
+  cursor: default;
+  margin: 0;
+  padding: 0;
+}
+
+.navmenu li:first-child {
+  flex-basis: 60%;
+}
+
+.navmenu {
+  padding: 0px 60px;
+  justify-content: space-around;
+}

@@ -1,0 +1,11 @@
+#root {
+  overflow: hidden;
+}
+
+#layout {
+  min-height: 100vh !important;
+}
+
+#header {
+  padding: 0;
+}
