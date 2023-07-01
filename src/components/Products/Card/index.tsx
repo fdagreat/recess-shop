@@ -29,7 +29,7 @@ const ProductCard = ({ product }: propTypes) => {
           {product.name}
         </Paragraph>
         <Row justify={"space-between"}>
-          <Text strong>EGP {product.price}</Text>
+          <Text strong>TZS {product.price}</Text>
         </Row>
       </Card>
     </Badge.Ribbon>

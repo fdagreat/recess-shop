@@ -81,7 +81,7 @@ const ProductDetails = () => {
                     {productQuery.data?.name}
                   </Title>
                   <Space>
-                    <Title level={2}> EGP {productQuery.data?.price}</Title>
+                    <Title level={2}> TZS {productQuery.data?.price}</Title>
                     <Text type='secondary'>(Now)</Text>
                   </Space>
                   <Text italic type='secondary'>

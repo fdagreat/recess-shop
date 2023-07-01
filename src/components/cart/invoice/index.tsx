@@ -24,13 +24,13 @@ const Invoice = ({ totalInvoice, totalItems }: propTypes) => {
               </Text>
             </Space>
 
-            <Title level={2}>{totalInvoice} EGP</Title>
+            <Title level={2}>{totalInvoice} TZS</Title>
           </Row>
           <Divider />
           <Row justify={"space-between"}>
             <Text type='secondary'>Subtotal ({totalItems})</Text>
 
-            <Text>{totalInvoice} EGP</Text>
+            <Text>{totalInvoice} TZS</Text>
           </Row>
           <Row justify={"space-between"}>
             <Text type='secondary'>Shipping</Text>

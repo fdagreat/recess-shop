@@ -65,7 +65,7 @@ const ListItem = ({
               <Col span={4}>
                 <Space direction='vertical' align='center' size={60}>
                   <Title level={4}>
-                    {product.price} <Text>EGP</Text>
+                    {product.price} <Text>TZS</Text>
                   </Title>
                   <Button
                     type='ghost'
