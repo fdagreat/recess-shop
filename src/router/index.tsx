@@ -24,29 +24,29 @@ const AppRouter = () => {
           element: <Home />,
         },
         {
-          path: "recess-shop/products",
+          path: "/recess-shop/products",
           element: <Home />,
         },
         {
-          path: "recess-shop/product/:id",
+          path: "/recess-shop/product/:id",
           element: <ProductDetails />,
         },
         {
-          path: "recess-shop/cart",
+          path: "/recess-shop/cart",
           element: <CartPage />,
         },
       ],
     },
     {
-      path: "/auth",
+      path: "/recess-shop/auth",
       element: <UnAuthedRoute user={user} />,
       children: [
         {
-          path: "/auth/login",
+          path: "/recess-shop/auth/login",
           element: <LoginPage />,
         },
         {
-          path: "/auth/register",
+          path: "/recess-shop/auth/register",
           element: <Register />,
         },
       ],

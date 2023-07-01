@@ -52,7 +52,7 @@ const Home = () => {
               {productsQuery.data?.items.map((product, index) => {
                 return (
                   <Col key={index}>
-                    <Link to={`/product/${product.id}`}>
+                    <Link to={`/recess-shop/product/${product.id}`}>
                       <ProductCard product={product} />
                     </Link>
                   </Col>

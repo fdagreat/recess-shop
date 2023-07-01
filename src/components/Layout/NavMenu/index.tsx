@@ -55,13 +55,13 @@ const NavMenu: React.FC = () => {
       disabled: true,
     },
     {
-      label: <Link to={"/"}>Home</Link>,
+      label: <Link to={"/recess-shop/"}>Home</Link>,
       key: "home",
       icon: <HomeOutlined />,
     },
 
     {
-      label: <Link to={"/cart"}>Cart</Link>,
+      label: <Link to={"/recess-shop/cart"}>Cart</Link>,
       key: "cart",
       icon: (
         <Badge count={data?.totalItems} size='small'>
@@ -85,7 +85,7 @@ const NavMenu: React.FC = () => {
         : [
             {
               label: (
-                <Link to={"/auth/login"}>
+                <Link to={"/recess-shop/auth/login"}>
                   <Text strong>Log in</Text>
                 </Link>
               ),
@@ -94,7 +94,7 @@ const NavMenu: React.FC = () => {
             {
               label: (
                 <Badge count='New here?' color='#13c2c2' offset={[45, 12]}>
-                  <Link to={"/auth/register"}>
+                  <Link to={"/recess-shop/auth/register"}>
                     <Text>Register</Text>
                   </Link>
                 </Badge>

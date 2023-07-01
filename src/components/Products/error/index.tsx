@@ -11,7 +11,7 @@ const ProductsFetchError = () => {
         title='Loading Products Failed'
         subTitle='Sorry, something went wrong.'
         extra={
-          <Link to={"/"}>
+          <Link to={"/recess-shop/"}>
             <Button type='primary'>Back Home</Button>
           </Link>
         }

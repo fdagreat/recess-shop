@@ -103,7 +103,7 @@ const LoginPage = () => {
                         Log in
                       </Button>
                     </Form.Item>
-                    Or <Link to={"/auth/register"}>Register Now</Link>
+                    Or <Link to={"/recess-shop/auth/register"}>Register Now</Link>
                   </Form>
                 </Row>
               </Col>

@@ -41,22 +41,22 @@ const categoriesItems: MenuProps["items"] = [
     <></>,
     [
       getItem(
-        <Link to={"/products/?category=auzmqvhtuiclpmv"}>Hoodies</Link>,
+        <Link to={"/recess-shop/products/?category=auzmqvhtuiclpmv"}>Hoodies</Link>,
         "hoodies",
         <ShoppingCartOutlined />
       ),
       getItem(
-        <Link to={"/products/?category=9t36m75pv0fdcxp"}>T-Shirts</Link>,
+        <Link to={"/recess-shop/products/?category=9t36m75pv0fdcxp"}>T-Shirts</Link>,
         "t-shirts",
         <SmileOutlined />
       ),
       getItem(
-        <Link to={"/products/?category=1g95arsqmyaf2kx"}>Top and Shorts</Link>,
+        <Link to={"/recess-shop/products/?category=1g95arsqmyaf2kx"}>Top and Shorts</Link>,
         "top-and-shorts",
         <DesktopOutlined />
       ),
       getItem(
-        <Link to={"/products/?category=ecqgcw7kquifdwo"}>
+        <Link to={"/recess-shop/products/?category=ecqgcw7kquifdwo"}>
           Shoes
         </Link>,
         "shoes",
@@ -78,21 +78,21 @@ const SideBar = () => {
       <></>,
       [
         getItem(
-          <Link to={`/products/?category=${category}&sort=-created`}>
+          <Link to={`/recess-shop/products/?category=${category}&sort=-created`}>
             Newest
           </Link>,
           "-created",
           <CalendarOutlined />
         ),
         getItem(
-          <Link to={`/products/?category=${category}&sort=+price`}>
+          <Link to={`/recess-shop/products/?category=${category}&sort=+price`}>
             price: low to high
           </Link>,
           "+price",
           <PlusCircleOutlined />
         ),
         getItem(
-          <Link to={`/products/?category=${category}&sort=-price`}>
+          <Link to={`/recess-shop/products/?category=${category}&sort=-price`}>
             price: high to low
           </Link>,
           "-price",

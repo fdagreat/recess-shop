@@ -122,7 +122,7 @@ const Register = () => {
                       </Button>
                     </Form.Item>
                     Already have an account?{" "}
-                    <Link to={"/auth/login"}>Login</Link>
+                    <Link to={"/recess-shop/auth/login"}>Login</Link>
                   </Form>
                 </Row>
               </Col>

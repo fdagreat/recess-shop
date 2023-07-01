@@ -13,7 +13,7 @@ const EmptyCart = () => {
           <Title level={3}>Your shopping cart looks empty</Title>
           <Text> Let's fix that </Text>
         </Space>
-        <Link to={"/products/"}>
+        <Link to={"/recess-shop/products/"}>
           <Button size='large' type='primary'>
             Start Shopping
           </Button>
