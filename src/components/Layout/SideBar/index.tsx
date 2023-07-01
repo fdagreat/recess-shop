@@ -51,15 +51,15 @@ const categoriesItems: MenuProps["items"] = [
         <SmileOutlined />
       ),
       getItem(
-        <Link to={"/products/?category=1g95arsqmyaf2kx"}>Shorts</Link>,
-        "shorts",
+        <Link to={"/products/?category=1g95arsqmyaf2kx"}>Top and Shorts</Link>,
+        "top-and-shorts",
         <DesktopOutlined />
       ),
       getItem(
         <Link to={"/products/?category=ecqgcw7kquifdwo"}>
-          Crop-Tops
+          Shoes
         </Link>,
-        "crop-tops",
+        "shoes",
         <HomeOutlined />
       ),
     ],
