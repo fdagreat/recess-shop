@@ -15,7 +15,7 @@ const AppRouter = () => {
 
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/recess-shop",
       element: <Root />,
       errorElement: <ErrorPage />,
       children: [
@@ -24,15 +24,15 @@ const AppRouter = () => {
           element: <Home />,
         },
         {
-          path: "/products",
+          path: "recess-shop/products",
           element: <Home />,
         },
         {
-          path: "/product/:id",
+          path: "recess-shop/product/:id",
           element: <ProductDetails />,
         },
         {
-          path: "/cart",
+          path: "recess-shop/cart",
           element: <CartPage />,
         },
       ],
