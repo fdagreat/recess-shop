@@ -46,7 +46,7 @@ const ListItem = ({
                 <Space direction='vertical' size={50}>
                   <Space direction='vertical'>
                     <Text>{product.name}</Text>
-                    <Text type='secondary'>{product.amount} item(s) left</Text>
+                    <Text type='secondary'>{addCommasToNumber(product.amount)} item(s) left</Text>
                   </Space>
                   <Space>
                     <InputNumber

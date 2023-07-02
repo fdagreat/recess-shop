@@ -31,7 +31,7 @@ const Invoice = ({ totalInvoice, totalItems }: propTypes) => {
           <Row justify={"space-between"}>
             <Text type='secondary'>Subtotal ({addCommasToNumber(totalItems)})</Text>
 
-            <Text>{totalInvoice} TZS</Text>
+            <Text>{addCommasToNumber(totalInvoice)} TZS</Text>
           </Row>
           <Row justify={"space-between"}>
             <Text type='secondary'>Shipping</Text>

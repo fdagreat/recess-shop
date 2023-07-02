@@ -6,7 +6,7 @@ export const getTotalInvoice = (cartItems: CartItemRecord[]) => {
   cartItems.forEach((item) => {
     total += (item.expand?.item as ProductRecord).price * item.quantity;
   });
-  return total.toFixed(2);
+  return `${total}`
 };
 
 export const getTotalItems = (cartItems: CartItemRecord[]) => {
