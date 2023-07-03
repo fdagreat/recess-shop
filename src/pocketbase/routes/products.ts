@@ -25,7 +25,7 @@ export const getProductsList = async ({
   return { ...resultList, items };
 };
 
-export const getProdcutByID = async ({
+export const getProductByID = async ({
   queryKey,
 }: QueryFunctionContext<[string, string]>): Promise<ProductRecord> => {
   const id = queryKey[1];
