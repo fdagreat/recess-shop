@@ -110,7 +110,7 @@ const Invoice = ({
       message.error("Please login to continue");
       setIsCheckoutDisabled(true);
       setIsCheckingOut(false);
-      window.location.href = "/recess-shop/auth/login";
+      // window.location.href = "/recess-shop/auth/login";
       return;
     }
   
