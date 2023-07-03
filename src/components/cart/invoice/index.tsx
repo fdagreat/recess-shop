@@ -15,9 +15,7 @@ import { addCommasToNumber } from "../../../utils/formmating";
 import { Record } from "pocketbase";
 import { Admin } from "pocketbase";
 import { checkout } from "../../../pocketbase/routes/order";
-import { RadioChangeEvent, Radio } from "antd";
 import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const { Title, Text } = Typography;
 
@@ -82,6 +80,7 @@ const Invoice = ({
   };
 
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [isCheckoutDisabled, setIsCheckoutDisabled] = useState(false);
 
   const shippingAddressOnChange = (value: string) => {
     const selectedOption = shippingAddressOptions.find(
@@ -108,17 +107,23 @@ const Invoice = ({
   
     if (user === null) {
       message.error("Please login to continue");
+      setIsCheckoutDisabled(true);
+      setIsCheckingOut(false);
       window.location.href = "/recess-shop/auth/login";
       return;
     }
   
     if (phoneNumber === "" || phoneNumber.length < 10) {
       message.error("Please enter a valid phone number");
+      setIsCheckingOut(false);
+
       return;
     }
   
     if (totalItems === 0) {
       message.error("Your cart is empty");
+      setIsCheckoutDisabled(true);
+      setIsCheckingOut(false);
       return;
     }
   
@@ -133,13 +138,16 @@ const Invoice = ({
       phoneNumber
     );
   
-    setIsCheckingOut(false);
   
     if (error) {
+      setIsCheckingOut(false);
+      setIsCheckoutDisabled(true);
       message.error(responseMessage);
     }
   
     if (!error) {
+      setIsCheckingOut(false);
+      setIsCheckoutDisabled(true);
       message.success(' Your order has been placed successfully! We will contact you shortly.');
       window.location.href = "/recess-shop/";
     }
@@ -237,6 +245,7 @@ const Invoice = ({
                 );
               }}
               loading={isCheckingOut}
+              disabled={isCheckoutDisabled}
             >
               Check Out
             </Button>
