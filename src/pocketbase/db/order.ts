@@ -26,15 +26,19 @@ export const createOrder = async (query: {
     shippingFee,
     phoneNumber,
   } = query;
+
+  const cartItemsIDs = cartItems.map((item) => item.id);
+
   const order = await pb.collection("order").create({
     user: user,
     totalInvoice: totalInvoice,
     totalItems: totalItems,
-    cartItems: cartItems,
+    carts: cartItemsIDs,
     shippingAddress: shippingAddress,
     paymentMethodOption: paymentMethodOption,
     shippingFee: shippingFee,
     phoneNumber: phoneNumber,
+    status: 'unpaid'
   });
   return order;
 };

@@ -39,24 +39,24 @@ export const getCartItems = async ({
   }
 };
 
-export const updateCartCheckedOutStatus = async (
-  query: { isOnline: boolean | undefined; userId?: string },
-  checkedOut: boolean
-) => {
-  if (query.isOnline) {
-    const cartItems = await fetchOnlineCart(query.userId!);
-    cartItems.forEach(async (item) => {
-      await updateOnlineCartItem(item.id!, { checkedOut });
-      await removeOnlineCartItem(item.id!)
-    });
-  } else {
-    const localCartItems = fetchLocalCart();
-    localCartItems.forEach((item) => {
-      item.checkedOut = checkedOut;
-    });
-    saveLocalCart(localCartItems);
-  }
-};
+// export const updateCartCheckedOutStatus = async (
+//   query: { isOnline: boolean | undefined; userId?: string },
+//   checkedOut: boolean
+// ) => {
+//   if (query.isOnline) {
+//     const cartItems = await fetchOnlineCart(query.userId!);
+//     cartItems.forEach(async (item) => {
+//       await updateOnlineCartItem(item.id!, { checkedOut });
+//       await removeOnlineCartItem(item.id!)
+//     });
+//   } else {
+//     const localCartItems = fetchLocalCart();
+//     localCartItems.forEach((item) => {
+//       item.checkedOut = checkedOut;
+//     });
+//     saveLocalCart(localCartItems);
+//   }
+// };
 
 export const addItemToCart = async (query: {
   isOnline: boolean | undefined;

@@ -62,7 +62,7 @@ export const updateOnlineCartItem = async (
   itemID: string,
   updateObject: object
 ) => {
-  const filters = `id='${itemID}' && checkedOut=false && deleted=false`
+  const filters = `id='${itemID}'`
   const record: CartItemRecord = await pb
     .collection("cart")
     .getFirstListItem(`${filters}`);
@@ -76,6 +76,11 @@ export const updateOnlineCartItem = async (
 export const removeOnlineCartItem = async (itemID: string) => {
   await updateOnlineCartItem(itemID, { deleted: true });
 };
+
+export const checkOutOnlineCart = async (itemID: string) => {
+  await updateOnlineCartItem(itemID, { checkedOut: true });
+};
+  
 
 export const clearLocalCart = () => {
   localStorage.removeItem("cart");

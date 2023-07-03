@@ -7,9 +7,12 @@ import {
   paymentMethodOption,
   shippingAddressOption,
 } from "../../components/cart/invoice";
-import { updateCartCheckedOutStatus } from "./cart";
 import { fetchProductAmount, updateProductAmount } from "../db/product";
-import { clearLocalCart } from "../db/cart";
+import {
+  checkOutOnlineCart,
+  clearLocalCart,
+  removeOnlineCartItem,
+} from "../db/cart";
 
 export async function checkout(
   user: Record | Admin,
@@ -24,6 +27,21 @@ export async function checkout(
   let responseMessage = "";
   let error = false;
 
+  console.log(
+    "checking out with data " +
+      JSON.stringify(cartItems) +
+      " " +
+      JSON.stringify(user)
+  ) +
+    " " +
+    JSON.stringify(shippingAddress) +
+    " " +
+    JSON.stringify(paymentMethodOption) +
+    " " +
+    JSON.stringify(shippingFee) +
+    " " +
+    JSON.stringify(phoneNumber);
+
   try {
     await createOrder({
       user: user.id,
@@ -37,14 +55,24 @@ export async function checkout(
     });
   } catch (error: any) {
     responseMessage =
-      responseMessage + "\n" + (error.responseMessage ? error.responseMessage : "Error in checkout");
+      responseMessage +
+      "\n" +
+      (error.responseMessage ? error.responseMessage : "Error in checkout");
     error = true;
     return { error, responseMessage };
   }
 
   try {
-    // Update the cart items to checkedOut
-    await updateCartCheckedOutStatus({ isOnline: true, userId: user.id }, false);
+    // map the cartItems and on each get the cart item id and mark it as checkedOut and mark it as deleted
+
+    for (const cart of cartItems) {
+      if (typeof cart === "object" && "id" in cart) {
+        const cartItemId = cart.id as string;
+        await checkOutOnlineCart(cartItemId);
+        await removeOnlineCartItem(cartItemId);
+      }
+    }
+    clearLocalCart();
   } catch (error: any) {
     responseMessage =
       responseMessage +
@@ -58,10 +86,7 @@ export async function checkout(
 
   // Map the cartItems, on each get the product id in the cart item and update the amount of the product items remaining in the database
   for (const cart of cartItems) {
-    if (
-      typeof cart?.expand?.item === "object" &&
-      "id" in cart?.expand?.item
-    ) {
+    if (typeof cart?.expand?.item === "object" && "id" in cart?.expand?.item) {
       const productId = cart.expand.item.id;
       const currentAmount = await fetchProductAmount(productId);
       const newAmount = currentAmount - cart.quantity;
@@ -73,7 +98,9 @@ export async function checkout(
         responseMessage =
           responseMessage +
           "\n" +
-          (error.responseMessage ? error.responseMessage : "Error in updating product amount");
+          (error.responseMessage
+            ? error.responseMessage
+            : "Error in updating product amount");
         error = true;
         return { error, responseMessage };
       }
