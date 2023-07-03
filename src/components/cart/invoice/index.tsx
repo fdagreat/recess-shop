@@ -39,52 +39,7 @@ export interface shippingAddressOption {
   shippingFee: number;
 }
 
-const handleCheckout = async (
-  user: Record | Admin | null,
-  totalInvoice: string,
-  totalItems: number,
-  cartItems: CartItemRecord[],
-  shippingAddress: shippingAddressOption["value"],
-  paymentMethodOption: paymentMethodOption["value"],
-  shippingFee: number,
-  phoneNumber: string
-) => {
-  if (user === null) {
-    message.error("Please login to continue");
-    window.location.href = "/recess-shop/auth/login";
-    return;
-  }
 
-  if (phoneNumber === "" || phoneNumber.length < 10) {
-    message.error("Please enter a valid phone number");
-    return;
-  }
-
-  if (totalItems === 0) {
-    message.error("Your cart is empty");
-    return;
-  }
-
-  const { responseMessage, error } = await checkout(
-    user,
-    totalInvoice,
-    totalItems,
-    cartItems,
-    shippingAddress,
-    paymentMethodOption,
-    shippingFee,
-    phoneNumber
-  );
-
-  if (error) {
-    message.error(responseMessage);
-  }
-
-  if (!error) {
-    message.success(' Your order has been placed successfully! We will contact you shortly.');
-    window.location.href = "/recess-shop/";
-  }
-};
 
 const shippingAddressOptions = [
   { value: "dar-es-salaam", label: "Inside Dar es salaam", shippingFee: 0 },
@@ -126,6 +81,8 @@ const Invoice = ({
     setPhoneNumber(e.target.value);
   };
 
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+
   const shippingAddressOnChange = (value: string) => {
     const selectedOption = shippingAddressOptions.find(
       (option) => option.value === value
@@ -135,8 +92,58 @@ const Invoice = ({
       setShippingFee(selectedOption.shippingFee);
     }
   };
-  
 
+  const handleCheckout = async (
+    user: Record | Admin | null,
+    totalInvoice: string,
+    totalItems: number,
+    cartItems: CartItemRecord[],
+    shippingAddress: shippingAddressOption["value"],
+    paymentMethodOption: paymentMethodOption["value"],
+    shippingFee: number,
+    phoneNumber: string
+  ) => {
+   
+    setIsCheckingOut(true);
+  
+    if (user === null) {
+      message.error("Please login to continue");
+      window.location.href = "/recess-shop/auth/login";
+      return;
+    }
+  
+    if (phoneNumber === "" || phoneNumber.length < 10) {
+      message.error("Please enter a valid phone number");
+      return;
+    }
+  
+    if (totalItems === 0) {
+      message.error("Your cart is empty");
+      return;
+    }
+  
+    const { responseMessage, error } = await checkout(
+      user,
+      totalInvoice,
+      totalItems,
+      cartItems,
+      shippingAddress,
+      paymentMethodOption,
+      shippingFee,
+      phoneNumber
+    );
+  
+    setIsCheckingOut(false);
+  
+    if (error) {
+      message.error(responseMessage);
+    }
+  
+    if (!error) {
+      message.success(' Your order has been placed successfully! We will contact you shortly.');
+      window.location.href = "/recess-shop/";
+    }
+  };
   return (
     <Card>
       <Row align="middle" gutter={[0, 50]}>
@@ -229,6 +236,7 @@ const Invoice = ({
                   phoneNumber
                 );
               }}
+              loading={isCheckingOut}
             >
               Check Out
             </Button>
