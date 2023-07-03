@@ -30,18 +30,18 @@ const ListItem = ({
 }: propTypes) => {
   const product = item.expand?.item as ProductRecord;
   return (
-    <Col span={22}>
+    <Col span={25}>
       <Spin indicator={<LoadingOutlined />} spinning={isBeingRemoved}>
         <Row>
-          <Col span={10}>
+          <Col span={15}>
             <Image
               preview={false}
-              height={250}
-              width={250}
+              height={240}
+              width={240}
               src={(item.expand?.item as ProductRecord).img}
             ></Image>
           </Col>
-          <Col span={10}>
+          <Col span={7}>
             <Row justify={"space-between"}>
               <Col span={5}>
                 <Space direction='vertical' >
