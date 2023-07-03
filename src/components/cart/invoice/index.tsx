@@ -104,6 +104,7 @@ const Invoice = ({
   ) => {
    
     setIsCheckingOut(true);
+    message.info("Please wait while I submit your order")
   
     if (user === null) {
       message.error("Please login to continue");
