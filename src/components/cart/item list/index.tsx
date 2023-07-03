@@ -55,6 +55,7 @@ const CartItemsList = ({ cartItems, totalItems }: propTypes) => {
             user?.isValid,
             user?.model?.id,
           ]);
+          message.success({ content: "Cart updated" });
         },
         onError: (error: any) => {
           message.error(error.message);
@@ -65,13 +66,13 @@ const CartItemsList = ({ cartItems, totalItems }: propTypes) => {
 
   return (
     <Row gutter={[0, 20]}>
-      <Col span={24}>
+      <Col span={20}>
         <Space>
           <Title level={1}>Cart</Title>
           <Text type='secondary'>({totalItems} items)</Text>
         </Space>
       </Col>
-      <Col span={24}>
+      <Col span={25}>
         <Row gutter={[0, 20]}>
           {cartItems.map((item, index) => {
             return (

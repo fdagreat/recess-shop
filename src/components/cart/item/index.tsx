@@ -30,25 +30,29 @@ const ListItem = ({
 }: propTypes) => {
   const product = item.expand?.item as ProductRecord;
   return (
-    <Col span={24}>
+    <Col span={22}>
       <Spin indicator={<LoadingOutlined />} spinning={isBeingRemoved}>
         <Row>
-          <Col span={5}>
+          <Col span={10}>
             <Image
               preview={false}
-              height={200}
+              height={250}
+              width={250}
               src={(item.expand?.item as ProductRecord).img}
             ></Image>
           </Col>
-          <Col span={18}>
+          <Col span={10}>
             <Row justify={"space-between"}>
-              <Col span={16}>
-                <Space direction='vertical' size={50}>
+              <Col span={5}>
+                <Space direction='vertical' >
                   <Space direction='vertical'>
                     <Text>{product.name}</Text>
                     <Text type='secondary'>{addCommasToNumber(product.amount)} item(s) left</Text>
                   </Space>
-                  <Space>
+                  <Space direction="vertical" align="center" size={10}>
+                  <Text type='secondary' italic>
+                      (In cart)
+                    </Text>
                     <InputNumber
                       defaultValue={item.quantity}
                       min={1}
@@ -57,13 +61,10 @@ const ListItem = ({
                         handleItemUpdate(item.id, item.item, val);
                       }}
                     />
-                    <Text type='secondary' italic>
-                      (selected amount)
-                    </Text>
                   </Space>
                 </Space>
               </Col>
-              <Col span={4}>
+              <Col span={5}>
                 <Space direction='vertical' align='center' size={60}>
                   <Title level={4}>
                     {addCommasToNumber(product.price)} <Text>TZS</Text>

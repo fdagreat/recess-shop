@@ -18,7 +18,7 @@
     "@tanstack/react-query-devtools": "^4.24.10",
     "@types/animejs": "^3.1.7",
     "animejs": "^3.2.1",
-    "antd": "^5.2.2",
+    "antd": "^5.6.3",
     "classnames": "^2.3.2",
     "gh-pages": "^5.0.0",
     "localforage": "^1.10.0",

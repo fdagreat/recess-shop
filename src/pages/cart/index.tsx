@@ -32,6 +32,8 @@ const CartPage = () => {
             <Invoice
               totalInvoice={data.totalInvoice}
               totalItems={data.totalItems}
+              user={user?.model?.id ? user.model : null}
+              cartItems={data.cartItems}
             />
           </Col>
         </>

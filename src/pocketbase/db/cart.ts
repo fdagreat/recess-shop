@@ -6,11 +6,12 @@ import { getProductThumb } from "./product";
 export const fetchOnlineCart = async (
   userId: string
 ): Promise<CartItemRecord[]> => {
+  const filters = `user='${userId}' && checkedOut=false && deleted=false`;
   const items: CartItemRecord[] = await pb
     .collection("cart")
     .getFullList(200 /* batch size */, {
       sort: "-created",
-      filter: `user='${userId}'`,
+      filter: `${filters}`, // only get the cart items that are not checked out
       expand: "item",
     });
   items.forEach((item) => {
@@ -34,9 +35,13 @@ export const findOnlineCartItem = async (
   itemID: string
 ): Promise<CartItemRecord | null> => {
   try {
+    const filters = `user='${userId}' && item='${itemID}' && checkedOut=false && deleted=false`
     const record: CartItemRecord = await pb
       .collection("cart")
-      .getFirstListItem(`user="${userId}" && item="${itemID}" `);
+      .getFirstListItem(
+        `${filters}`
+      );
+      console.log("record : " + record);
     return record;
   } catch (error) {
     return null;
@@ -57,11 +62,19 @@ export const updateOnlineCartItem = async (
   itemID: string,
   updateObject: object
 ) => {
-  await pb.collection("cart").update(itemID, updateObject);
+  const filters = `id='${itemID}' && checkedOut=false && deleted=false`
+  const record: CartItemRecord = await pb
+    .collection("cart")
+    .getFirstListItem(`${filters}`);
+    console.log("record : " + record);
+  if (!record) {
+    await pb.collection("cart").update(itemID, updateObject);
+  }
+  await pb.collection("cart").update(record.id!, updateObject);
 };
 
 export const removeOnlineCartItem = async (itemID: string) => {
-  await pb.collection("cart").delete(itemID);
+  await updateOnlineCartItem(itemID, { deleted: true });
 };
 
 export const clearLocalCart = () => {

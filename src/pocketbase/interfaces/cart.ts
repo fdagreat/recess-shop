@@ -6,6 +6,8 @@ interface CartItem {
   user: string;
   item: string;
   quantity: number;
+  checkedOut: boolean;
+  deleted: boolean
   expand?: {
     item: ProductRecord;
   };
