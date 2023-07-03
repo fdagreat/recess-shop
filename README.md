@@ -78,9 +78,7 @@ Project Structure
 
 The project structure is organized as follows:
 
-arduino
-
-```arduino
+```
 recess-shop/
 ├── public/
 │   ├── index.html
@@ -135,9 +133,10 @@ Acknowledgements
 We would like to acknowledge the following resources that were instrumental in the development of this project:
 
 *   [Vite.ts](https://vitejs.dev) - The fast and opinionated web development build tool.
-*   [Vue.ts](https://vuejs.org) - The progressive JavaScript framework used in this project.
-*   [Tailwind CSS](https://tailwindcss.com) - A utility-first CSS framework used for styling the application.
-
+*   [React](https://reactjs.org) - A JavaScript library for building user interfaces.
+*   [Ant Design](https://ant.design) - A design system for enterprise-level products. We used it to build the UI components for the application.
+*   [Pocketbase](https://pocketbase.io) - A backend-as-a-service platform that provides a simple and secure way to build and scale your applications.
+*   [React Router](https://reactrouter.com) - A collection of navigational components that compose declaratively with your application.
 Contact
 -------
 
