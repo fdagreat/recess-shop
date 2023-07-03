@@ -8,6 +8,7 @@ import LoadingProducts from "../../components/Products/Loading";
 import Invoice from "../../components/cart/invoice";
 import CartItemsList from "../../components/cart/item list";
 import EmptyCart from "../../components/cart/empty";
+import { useEffect } from "react";
 
 const CartPage = () => {
   const { user } = useAuth();
@@ -15,7 +16,10 @@ const CartPage = () => {
     ["cartItems", user?.isValid, user?.model?.id],
     getCartItems
   );
-
+  useEffect(() => {
+    // scroll to top
+    window.scrollTo(0, 0);
+  }, [])
   return (
     <Row className={styles.main} justify={"center"}>
       <LoadingProducts loading={isLoading} />

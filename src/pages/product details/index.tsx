@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -13,7 +13,7 @@ import {
   InputNumber,
   Card,
 } from "antd";
-import { getProdcutByID } from "../../pocketbase/routes/products";
+import { getProductByID } from "../../pocketbase/routes/products";
 import {
   CarOutlined,
   LockOutlined,
@@ -32,7 +32,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const queryClient = useQueryClient();
-  const productQuery = useQuery(["product", id!], getProdcutByID, { retry: 2 });
+  const productQuery = useQuery(["product", id!], getProductByID, { retry: 2 });
   const cartMutation = useMutation(addItemToCart, {
     onSuccess: () => {
       queryClient.invalidateQueries([
@@ -48,6 +48,11 @@ const ProductDetails = () => {
       });
     },
   });
+
+  useEffect(() => {
+    // scroll to top
+    window.scrollTo(0, 0);
+  }, [])
 
   const [quantity, setQuantity] = useState(1);
 
