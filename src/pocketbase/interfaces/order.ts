@@ -9,6 +9,7 @@ interface Order {
     totalInvoice: string;
     totalItems: number;
     carts: string[];
+    products: string[];
     shippingAddress: shippingAddressOption["value"];
     paymentMethodOption: paymentMethodOption["value"];
     shippingFee: number;
